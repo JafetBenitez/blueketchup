@@ -1,3 +1,10 @@
+from django.conf.urls import url, include
+from rest_framework import routers
+from core import views
+from django.conf.urls import url
+from django.contrib import admin
+
+
 """blueketchup URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -13,9 +20,16 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
-from django.contrib import admin
+
+router = routers.DefaultRouter()
+router.register(r'tags', views.TagViewSet)
+router.register(r'dish', views.DishViewSet)
+router.register(r'profile', views.ProfileViewSet)
+router.register(r'restaurant', views.RestaurantViewSet)
+router.register(r'franchise', views.FranchiseViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^', include(router.urls)),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
