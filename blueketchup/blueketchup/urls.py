@@ -1,6 +1,7 @@
 from django.conf.urls import url, include
 from rest_framework import routers
 from core import views
+import core
 from django.conf.urls import url
 from django.contrib import admin
 
